@@ -1,7 +1,9 @@
 const promiseMiddleware = store => next => action => {
 	if (isPromise(action.payload)) {
+    console.log("found promise")
     action.payload.then(
       res => {
+        console.log("found result");
         action.payload = res;
         store.dispatch(action);
       },
